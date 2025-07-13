@@ -11,14 +11,14 @@ typedef struct {
     int idade;
 } Pessoa;
 
-//Estrutura para armazenar as métricas de cada algoritmo
+//Estrutura para armazenar as mÃ©tricas de cada algoritmo
 typedef struct {
     long long comparacoes;
     long long trocas;
     double tempo_total;
 } Metricas;
 
-// Protótipos das funções de ordenação 
+// ProtÃ³tipos das funÃ§Ãµes de ordenaÃ§Ã£o 
 void bubbleSort(Pessoa arr[], int n, Metricas* m);
 void selectionSort(Pessoa arr[], int n, Metricas* m);
 void quickSort(Pessoa arr[], int baixo, int alto, Metricas* m);
@@ -26,15 +26,14 @@ void quickSort(Pessoa arr[], int baixo, int alto, Metricas* m);
 
 
 void bubbleSort(Pessoa arr[], int n, Metricas* m) {
-    // Como o bubble sort é executado várias vezes para medir o tempo,
-    // resetamos as métricas de comparação e troca a cada chamada real.
+    
     m->comparacoes = 0;
     m->trocas = 0;
     int i,j;
     
     for (i = 0; i < n - 1; i++) {
         for ( j = 0; j < n - i - 1; j++) {
-            //Incremento do numero de comparações
+            //Incremento do numero de comparaÃ§Ãµes
             m->comparacoes++;
             //Ordenando pelo nome usando strcmp
             if (strcmp(arr[j].nome, arr[j + 1].nome) > 0) {
@@ -42,7 +41,7 @@ void bubbleSort(Pessoa arr[], int n, Metricas* m) {
                 Pessoa temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
-                //o numero de trocas é incrementado
+                //o numero de trocas Ã© incrementado
                 m->trocas++;
             }
         }
@@ -1329,23 +1328,22 @@ int main() {
 };
     int n = sizeof(pessoas) / sizeof(pessoas[0]);
 
-    // Arrays de cópia para cada algoritmo, para que todos comecem com a mesma lista
+    
     Pessoa pessoas_bubble[n];
     Pessoa pessoas_selection[n];
     Pessoa pessoas_quick[n];
 
-    // Número de execuções para calcular a média de tempo
+   
     int num_execucoes = 5;
 
     printf("Estado inicial do array:\n");
     imprimirPessoas(pessoas, n);
 
-    // --- Execução do Bubble Sort ---
     Metricas metricas_bubble = {0, 0, 0.0};
     printf("Executando Bubble Sort...\n");
     int i;
     for( i = 0; i < num_execucoes; i++) {
-        memcpy(pessoas_bubble, pessoas, sizeof(pessoas)); // Reseta o array
+        memcpy(pessoas_bubble, pessoas, sizeof(pessoas)); 
         clock_t inicio = clock();
         bubbleSort(pessoas_bubble, n, &metricas_bubble);
         clock_t fim = clock();
@@ -1357,7 +1355,7 @@ int main() {
     printf("Bubble Sort - Trocas: %lld\n", metricas_bubble.trocas);
     printf("Bubble Sort - Tempo medio de execucoo: %.4f ms\n\n", metricas_bubble.tempo_total / num_execucoes);
 
-    // --- Execução do Selection Sort ---
+ 
     Metricas metricas_selection = {0, 0, 0.0};
     printf("Executando Selection Sort...\n");
    
@@ -1375,7 +1373,7 @@ int main() {
     printf("Selection Sort - Tempo medio de execucao: %.4f ms\n\n", metricas_selection.tempo_total / num_execucoes);
 
 
-    // --- Execução do Quick Sort ---
+  
     Metricas metricas_quick = {0, 0, 0.0};
     printf("Executando Quick Sort...\n");
     for( i = 0; i < num_execucoes; i++) {
